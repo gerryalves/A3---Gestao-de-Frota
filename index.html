@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Frota</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Gestão de Frota</h1>
+        <nav>
+            <ul>
+                <li><a href="#solicitar">Solicitar Veículo</a></li>
+                <li><a href="#devolver">Devolver Veículo</a></li>
+                <li><a href="#relatorios">Relatórios</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="solicitar">
+            <h2>Solicitar Veículo</h2>
+            <form id="solicitarForm">
+                <input type="text" id="gestorId" placeholder="ID do Gestor" required>
+                <input type="text" id="motoristaId" placeholder="ID do Motorista" required>
+                <input type="text" id="telefoneMotorista" placeholder="Telefone do Motorista" required>
+                <input type="text" id="carroId" placeholder="ID do Carro" required>
+                <input type="text" id="odometroAtual" placeholder="Odômetro Atual" required>
+                <button type="submit">Solicitar Veículo</button>
+            </form>
+        </section>
+
+        <section id="devolver">
+            <h2>Devolver Veículo</h2>
+            <form id="devolverForm">
+                <input type="text" id="gestorIdDev" placeholder="ID do Gestor" required>
+                <input type="text" id="motoristaIdDev" placeholder="ID do Motorista" required>
+                <input type="text" id="telefoneMotoristaDev" placeholder="Telefone do Motorista" required>
+                <input type="text" id="carroIdDev" placeholder="ID do Carro" required>
+                <input type="text" id="odometroAtualDev" placeholder="Odômetro Atual" required>
+                <button type="submit">Devolver Veículo</button>
+            </form>
+        </section>
+
+        <section id="relatorios">
+            <h2>Relatórios</h2>
+            <!-- Adicione os formulários e tabelas para os relatórios aqui -->
+        </section>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script src="js/solicitarVeiculo.js"></script>
+    <script src="js/devolverVeiculo.js"></script>
+</body>
+</html>
