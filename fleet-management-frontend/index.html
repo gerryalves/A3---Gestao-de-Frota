@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Frota</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Gestão de Frota</h1>
+        <nav>
+            <ul>
+                <li><a href="#solicitar">Solicitar Veículo</a></li>
+                <li><a href="#devolver">Devolver Veículo</a></li>
+                <li><a href="#relatorios">Relatórios</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="solicitar">
+            <h2>Solicitar Veículo</h2>
+            <form id="solicitarForm">
+                <input type="text" id="gestorId" placeholder="ID do Gestor" required>
+                <input type="text" id="motoristaId" placeholder="ID do Motorista" required>
+                <input type="text" id="telefoneMotorista" placeholder="Telefone do Motorista" required>
+                <input type="text" id="carroId" placeholder="ID do Carro" required>
+                <input type="text" id="odometroAtual" placeholder="Odômetro Atual" required>
+                <button type="submit">Solicitar Veículo</button>
+            </form>
+            <div id="mensagemConfirmacao" style="display: none; color: green; font-weight: bold;"></div>
+        </section>
+
+        <section id="devolver">
+            <h2>Devolver Veículo</h2>
+            <form id="devolverForm">
+                <input type="text" id="gestorIdDev" placeholder="ID do Gestor" required>
+                <input type="text" id="motoristaIdDev" placeholder="ID do Motorista" required>
+                <input type="text" id="telefoneMotoristaDev" placeholder="Telefone do Motorista" required>
+                <input type="text" id="carroIdDev" placeholder="ID do Carro" required>
+                <input type="text" id="odometroAtualDev" placeholder="Odômetro Atual" required>
+                <button type="submit">Devolver Veículo</button>
+            </form>
+        </section>
+
+        <section id="relatorios">
+            <h2>Relatórios</h2>
+            
+            <!-- Relatório de uso dos veículos -->
+            <h3>Uso dos Veículos</h3>
+            <form id="relatorioVeiculosForm">
+                <input type="date" id="dataInicio" required>
+                <input type="date" id="dataFim" required>
+                <button type="submit">Gerar Relatório</button>
+            </form>
+            <table id="relatorioVeiculos">
+                <thead>
+                    <tr>
+                        <th>ID Evento</th>
+                        <th>ID Gestor</th>
+                        <th>ID Motorista</th>
+                        <th>ID Carro</th>
+                        <th>Data</th>
+                        <th>Tipo Evento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dados serão inseridos dinamicamente via JavaScript -->
+                </tbody>
+            </table>
+
+            <!-- Relatório de uso por motorista -->
+            <h3>Uso por Motorista</h3>
+            <form id="relatorioMotoristaForm">
+                <input type="text" id="motoristaIdRelatorio" placeholder="ID do Motorista" required>
+                <input type="date" id="dataInicioMotorista" required>
+                <input type="date" id="dataFimMotorista" required>
+                <button type="submit">Gerar Relatório</button>
+            </form>
+            <table id="relatorioMotorista">
+                <thead>
+                    <tr>
+                        <th>ID Evento</th>
+                        <th>ID Motorista</th>
+                        <th>ID Carro</th>
+                        <th>Data</th>
+                        <th>Tipo Evento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dados serão inseridos dinamicamente via JavaScript -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="./js/main.js"></script>
+    <script src="./js/solicitarVeiculo.js"></script>
+    <script src="./js/devolverVeiculo.js"></script>
+    <script src="./js/relatorios.js"></script> <!-- Adicionado script para relatórios -->
+</body>
+</html>
