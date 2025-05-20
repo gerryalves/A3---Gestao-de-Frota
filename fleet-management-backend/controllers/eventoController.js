@@ -1,6 +1,6 @@
 const express = require("express");
-const router = express.Router(); // Correto para definir rotas no controlador
-const connection = require("../config/database"); // Certifique-se de que este caminho está correto
+const router = express.Router(); 
+const connection = require("../config/database"); 
 
 // Listar todos os eventos (GET)
 const listarEventos = (req, res) => {
@@ -91,7 +91,7 @@ const relatorioMotorista = (req, res) => {
 router.post("/api/eventos", (req, res) => {
     const { gestorId, motoristaId, telefoneMotorista, carroId, odometroAtual } = req.body;
 
-    console.log("🔍 Dados recebidos do frontend:", req.body); // Teste para verificar os dados
+    console.log("🔍 Dados recebidos do frontend:", req.body); 
 
     const query = `INSERT INTO eventos (gestorId, motoristaId, telefoneMotorista, carroId, odometroAtual, tipoEvento, data) 
                    VALUES (?, ?, ?, ?, ?, 'saida', NOW())`;
@@ -107,9 +107,8 @@ router.post("/api/eventos", (req, res) => {
 });
 
 
-// Exportando funções corretamente
 module.exports = {
-    listarEventos, // Agora a rota GET /api/eventos funcionará corretamente!
+    listarEventos, 
     solicitarVeiculo,
     devolverVeiculo,
     verificarDisponibilidade,

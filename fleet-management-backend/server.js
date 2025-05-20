@@ -1,8 +1,8 @@
 const express = require("express");
-const connection = require("./config/database"); // Certifique-se de que esse caminho está correto
+const connection = require("./config/database"); 
 const carroController = require("./controllers/carroController");
 const motoristaController = require("./controllers/motoristaController");
-const eventoController = require("./controllers/eventoController"); // Certifique-se de que esse arquivo está correto!
+const eventoController = require("./controllers/eventoController"); 
 
 const app = express();
 app.use(express.json());
@@ -23,11 +23,11 @@ app.get("/api/motoristas", motoristaController.list);
 app.get("/api/motoristas/:id", motoristaController.get);
 
 // Rotas para Eventos
-app.get("/api/eventos", eventoController.listarEventos); // 🚀 Adicionada a rota para listar eventos
+app.get("/api/eventos", eventoController.listarEventos); 
 app.post("/api/eventos", eventoController.solicitarVeiculo);
 app.post("/api/devolver", eventoController.devolverVeiculo);
 app.get("/api/eventos/disponibilidade", eventoController.verificarDisponibilidade);
 app.get("/api/eventos/uso", eventoController.relatorioUsoVeiculos);
 app.get("/api/eventos/motorista", eventoController.relatorioMotorista);
 
-app.listen(3000, () => console.log("🚀 Servidor rodando na porta 3000!"));
+app.listen(3000, () => console.log("Servidor rodando na porta 3000!"));

@@ -1,4 +1,3 @@
-// Código principal para gerenciar a navegação e inicialização
 document.addEventListener('DOMContentLoaded', function () {
     // Função para alternar entre as seções
     function navigateToSection(sectionId) {

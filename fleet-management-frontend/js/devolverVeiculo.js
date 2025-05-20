@@ -9,7 +9,7 @@ document.getElementById("devolverForm").addEventListener("submit", async (event)
 
     const data = { gestorId, motoristaId, telefoneMotorista, carroId, odometroAtual };
 
-    const mensagemDiv = document.getElementById("mensagemConfirmacaoDev"); // 🔥 Agora usamos um ID exclusivo!
+    const mensagemDiv = document.getElementById("mensagemConfirmacaoDev"); 
 
     try {
         const response = await fetch("http://localhost:3000/api/devolver", {
@@ -26,7 +26,7 @@ document.getElementById("devolverForm").addEventListener("submit", async (event)
             mensagemDiv.style.color = "red";
         }
 
-        mensagemDiv.style.display = "block"; // 🔥 Agora a mensagem aparece!
+        mensagemDiv.style.display = "block"; 
     } catch (error) {
         console.error("❌ Erro ao conectar com o servidor:", error);
         mensagemDiv.textContent = "❌ Erro ao conectar com o servidor!";
