@@ -4,3 +4,4 @@ Sendo a parte BackEnd - Sistemas distribuídos e mobile e o FrontEnd - Usabilida
 Atualização: Backend atualizado, servidor funcionando e rodando com o banco de dados. FrontEnd utilizando CSS e Javascript adicionadas pastas principais do projeto com o Backend e o Frontend completo.
 Atualização lógica de codigo de botao Devolver Veiculo funcionando no frontend e salvando no banco de dados corretamente.
 Atualização de melhorias para clean code, removido o que for desnecéssário e correção de bugs.
+Aba de relatórios funcionando, bugs corrigidos!
