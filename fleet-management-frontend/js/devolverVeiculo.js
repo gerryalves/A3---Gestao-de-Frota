@@ -1,28 +1,36 @@
-document.getElementById('devolverForm').addEventListener('submit', function (e) {
-    e.preventDefault();
+document.getElementById("devolverForm").addEventListener("submit", async (event) => {
+    event.preventDefault(); // 🔥 Evita o recarregamento da página
 
-    const gestorId = document.getElementById('gestorIdDev').value;
-    const motoristaId = document.getElementById('motoristaIdDev').value;
-    const telefoneMotorista = document.getElementById('telefoneMotoristaDev').value;
-    const carroId = document.getElementById('carroIdDev').value;
-    const odometroAtual = document.getElementById('odometroAtualDev').value;
+    const gestorId = document.getElementById("gestorIdDev").value;
+    const motoristaId = document.getElementById("motoristaIdDev").value;
+    const telefoneMotorista = document.getElementById("telefoneMotoristaDev").value;
+    const carroId = document.getElementById("carroIdDev").value;
+    const odometroAtual = document.getElementById("odometroAtualDev").value;
 
-    const data = {
-        gestorId,
-        motoristaId,
-        telefoneMotorista,
-        carroId,
-        odometroAtual
-    };
+    const data = { gestorId, motoristaId, telefoneMotorista, carroId, odometroAtual };
 
-    fetch('http://localhost:3000/api/eventos/devolver', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-    .then(response => response.text())
-    .then(data => alert(data))
-    .catch(error => console.error('Erro:', error));
+    const mensagemDiv = document.getElementById("mensagemConfirmacaoDev"); // 🔥 Agora usamos um ID exclusivo!
+
+    try {
+        const response = await fetch("http://localhost:3000/api/devolver", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+        });
+
+        if (response.ok) {
+            mensagemDiv.textContent = "✅ Veículo devolvido com sucesso!";
+            mensagemDiv.style.color = "green";
+        } else {
+            mensagemDiv.textContent = "❌ Erro ao devolver veículo. Verifique os dados!";
+            mensagemDiv.style.color = "red";
+        }
+
+        mensagemDiv.style.display = "block"; // 🔥 Agora a mensagem aparece!
+    } catch (error) {
+        console.error("❌ Erro ao conectar com o servidor:", error);
+        mensagemDiv.textContent = "❌ Erro ao conectar com o servidor!";
+        mensagemDiv.style.color = "red";
+        mensagemDiv.style.display = "block"; 
+    }
 });

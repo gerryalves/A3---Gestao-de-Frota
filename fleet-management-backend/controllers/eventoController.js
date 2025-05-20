@@ -33,7 +33,7 @@ const solicitarVeiculo = (req, res) => {
 // Devolver um veículo (POST)
 const devolverVeiculo = (req, res) => {
     const { gestorId, motoristaId, telefoneMotorista, carroId, odometroAtual } = req.body;
-    const query = `INSERT INTO eventos (gestorId, motoristaId, telefoneMotorista, carroId, odometroAtual, tipoEvento, dataEvento)
+    const query = `INSERT INTO eventos (gestorId, motoristaId, telefoneMotorista, carroId, odometroAtual, tipoEvento, data)
                    VALUES (?, ?, ?, ?, ?, 'entrada', NOW())`;
 
     connection.query(query, [gestorId, motoristaId, telefoneMotorista, carroId, odometroAtual], (err, result) => {

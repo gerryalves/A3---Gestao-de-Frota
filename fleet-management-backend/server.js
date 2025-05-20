@@ -25,7 +25,7 @@ app.get("/api/motoristas/:id", motoristaController.get);
 // Rotas para Eventos
 app.get("/api/eventos", eventoController.listarEventos); // 🚀 Adicionada a rota para listar eventos
 app.post("/api/eventos", eventoController.solicitarVeiculo);
-app.post("/api/eventos/devolucao", eventoController.devolverVeiculo);
+app.post("/api/devolver", eventoController.devolverVeiculo);
 app.get("/api/eventos/disponibilidade", eventoController.verificarDisponibilidade);
 app.get("/api/eventos/uso", eventoController.relatorioUsoVeiculos);
 app.get("/api/eventos/motorista", eventoController.relatorioMotorista);
