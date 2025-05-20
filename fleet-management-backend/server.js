@@ -29,5 +29,7 @@ app.post("/api/devolver", eventoController.devolverVeiculo);
 app.get("/api/eventos/disponibilidade", eventoController.verificarDisponibilidade);
 app.get("/api/eventos/uso", eventoController.relatorioUsoVeiculos);
 app.get("/api/eventos/motorista", eventoController.relatorioMotorista);
+app.get("/api/eventos/uso", eventoController.relatorioUsoVeiculos); // 🔥 Relatório de veículos
+app.get("/api/eventos/motorista", eventoController.relatorioMotorista); // 🔥 Relatório por motorista
 
 app.listen(3000, () => console.log("Servidor rodando na porta 3000!"));
