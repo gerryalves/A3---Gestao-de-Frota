@@ -5,3 +5,4 @@ Atualização: Backend atualizado, servidor funcionando e rodando com o banco de
 Atualização lógica de codigo de botao Devolver Veiculo funcionando no frontend e salvando no banco de dados corretamente.
 Atualização de melhorias para clean code, removido o que for desnecéssário e correção de bugs.
 Aba de relatórios funcionando, bugs corrigidos!
+Adicionado tela de login e correção de bugs!
