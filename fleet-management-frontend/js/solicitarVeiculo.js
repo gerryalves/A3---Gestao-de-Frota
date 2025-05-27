@@ -18,7 +18,7 @@ document.getElementById("solicitarForm").addEventListener("submit", async (event
     const mensagemDiv = document.getElementById("mensagemConfirmacao");
 
     try {
-        const response = await fetch("http://localhost:3000/api/eventos", {
+        const response = await fetch("http://localhost:3000/api/eventos/solicitar", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

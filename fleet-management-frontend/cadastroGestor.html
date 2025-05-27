@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro - Gestão de Frota</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <h2>Cadastro de Gestor</h2>
+    <form id="cadastroForm">
+        <input type="text" id="nome" placeholder="Nome Completo" required>
+        <input type="email" id="emailCadastro" placeholder="E-mail" required>
+        <input type="password" id="senhaCadastro" placeholder="Senha" required>
+        <button type="submit">Cadastrar</button>
+    </form>
+    <div id="mensagemCadastro" style="display: none; color: red;"></div>
+    <p>Já tem uma conta? <a href="login.html">Faça login</a></p>
+    <script src="./js/cadastroGestor.js"></script>
+</body>
+</html>

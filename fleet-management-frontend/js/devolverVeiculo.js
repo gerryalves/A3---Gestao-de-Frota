@@ -12,7 +12,7 @@ document.getElementById("devolverForm").addEventListener("submit", async (event)
     const mensagemDiv = document.getElementById("mensagemConfirmacaoDev"); 
 
     try {
-        const response = await fetch("http://localhost:3000/api/devolver", {
+        const response = await fetch("http://localhost:3000/api/eventos/devolver", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data)

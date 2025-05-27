@@ -5,12 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestão de Frota</title>
     <link rel="stylesheet" href="css/styles.css">
+    <script>
+        if (!localStorage.getItem("token")) {
+            window.location.href = "login.html"; // 🔥 Se não estiver logado, redireciona!
+        }
+    </script>
 </head>
 <body>
     <header>
         <h1>Gestão de Frota</h1>
         <nav>
             <ul>
+                <li><a href="login.html">Login</a></li> <!-- 🔥 Link para a tela de login -->
+                <li><a href="motoristas.html">Gerenciar Motoristas</a></li>
+                <li><a href="carros.html">Gerenciar Carros</a></li>
+                <li><a href="eventos.html">Gerenciar Eventos</a></li>
                 <li><a href="#solicitar">Solicitar Veículo</a></li>
                 <li><a href="#devolver">Devolver Veículo</a></li>
                 <li><a href="#relatorios">Relatórios</a></li>
@@ -70,7 +79,7 @@
                     <!-- Dados serão inseridos dinamicamente via JavaScript -->
                 </tbody>
             </table>
-            <div id="mensagemRelatorioVeiculos" style="display: none; color: green; font-weight: bold;"></div> <!-- 🔥 Adicionado para exibir mensagens -->
+            <div id="mensagemRelatorioVeiculos" style="display: none; color: green; font-weight: bold;"></div>
 
             <!-- Relatório de uso por motorista -->
             <h3>Uso por Motorista</h3>
@@ -94,7 +103,7 @@
                     <!-- Dados serão inseridos dinamicamente via JavaScript -->
                 </tbody>
             </table>
-            <div id="mensagemRelatorioMotorista" style="display: none; color: green; font-weight: bold;"></div> <!-- 🔥 Adicionado para exibir mensagens -->
+            <div id="mensagemRelatorioMotorista" style="display: none; color: green; font-weight: bold;"></div>
         </section>
     </main>
 

@@ -1,6 +1,4 @@
-const express = require("express");
-const router = express.Router(); 
-const connection = require("../config/database"); 
+const connection = require("../config/database");
 
 // Listar todos os eventos (GET)
 const listarEventos = (req, res) => {
@@ -8,8 +6,8 @@ const listarEventos = (req, res) => {
 
     connection.query(query, (err, result) => {
         if (err) {
-            console.error("Erro ao listar eventos:", err);
-            return res.status(500).send('Erro ao listar eventos');
+            console.error("❌ Erro ao listar eventos:", err);
+            return res.status(500).send("Erro ao listar eventos");
         }
         res.json(result);
     });
@@ -18,11 +16,18 @@ const listarEventos = (req, res) => {
 // Solicitar um veículo (POST)
 const solicitarVeiculo = (req, res) => {
     const { gestorId, motoristaId, telefoneMotorista, carroId, odometroAtual } = req.body;
+
+    console.log("🔍 Dados recebidos:", { gestorId, motoristaId, telefoneMotorista, carroId, odometroAtual });
+
+    if (!gestorId || !motoristaId || !telefoneMotorista || !carroId || !odometroAtual) {
+        return res.status(400).json({ error: "❌ Erro ao solicitar veículo. Verifique os dados!" });
+    }
+
     const query = `INSERT INTO eventos (gestorId, motoristaId, telefoneMotorista, carroId, odometroAtual, tipoEvento, data) VALUES (?, ?, ?, ?, ?, 'saida', NOW())`;
 
     connection.query(query, [gestorId, motoristaId, telefoneMotorista, carroId, odometroAtual], (err, result) => {
         if (err) {
-            console.error("Erro ao registrar solicitação:", err);
+            console.error("❌ Erro ao registrar solicitação:", err);
             return res.status(500).json({ error: "Erro ao registrar solicitação" });
         }
         console.log("✅ Evento salvo com sucesso no banco!", result);
@@ -33,29 +38,33 @@ const solicitarVeiculo = (req, res) => {
 // Devolver um veículo (POST)
 const devolverVeiculo = (req, res) => {
     const { gestorId, motoristaId, telefoneMotorista, carroId, odometroAtual } = req.body;
-    const query = `INSERT INTO eventos (gestorId, motoristaId, telefoneMotorista, carroId, odometroAtual, tipoEvento, data)
-                   VALUES (?, ?, ?, ?, ?, 'entrada', NOW())`;
+    
+    if (!gestorId || !motoristaId || !telefoneMotorista || !carroId || !odometroAtual) {
+        return res.status(400).json({ error: "❌ Todos os campos são obrigatórios!" });
+    }
+
+    const query = `INSERT INTO eventos (gestorId, motoristaId, telefoneMotorista, carroId, odometroAtual, tipoEvento, data) VALUES (?, ?, ?, ?, ?, 'entrada', NOW())`;
 
     connection.query(query, [gestorId, motoristaId, telefoneMotorista, carroId, odometroAtual], (err, result) => {
         if (err) {
-            console.error("Erro ao registrar devolução:", err);
-            return res.status(500).send('Erro ao registrar devolução');
+            console.error("❌ Erro ao registrar devolução:", err);
+            return res.status(500).json({ error: "Erro ao registrar devolução" });
         }
-        res.send({ message: "Veículo devolvido com sucesso!", id: result.insertId });
+        res.json({ message: "✅ Veículo devolvido com sucesso!", id: result.insertId });
     });
 };
 
 // Verificar disponibilidade dos veículos (GET)
 const verificarDisponibilidade = (req, res) => {
     const query = `SELECT * FROM carros WHERE id NOT IN (
-        SELECT carroId FROM eventos WHERE tipoEvento = 'saida' 
+        SELECT carroId FROM eventos WHERE tipoEvento = 'saida'  
         AND carroId NOT IN (SELECT carroId FROM eventos WHERE tipoEvento = 'entrada')
     )`;
 
     connection.query(query, (err, result) => {
         if (err) {
-            console.error("Erro ao verificar disponibilidade:", err);
-            return res.status(500).send('Erro ao verificar disponibilidade');
+            console.error("❌ Erro ao verificar disponibilidade:", err);
+            return res.status(500).send("Erro ao verificar disponibilidade");
         }
         res.json(result);
     });
@@ -98,27 +107,10 @@ const relatorioMotorista = (req, res) => {
         res.json(result);
     });
 };
-router.post("/api/eventos", (req, res) => {
-    const { gestorId, motoristaId, telefoneMotorista, carroId, odometroAtual } = req.body;
 
-    console.log("🔍 Dados recebidos do frontend:", req.body); 
-
-    const query = `INSERT INTO eventos (gestorId, motoristaId, telefoneMotorista, carroId, odometroAtual, tipoEvento, data) 
-                   VALUES (?, ?, ?, ?, ?, 'saida', NOW())`;
-
-    connection.query(query, [gestorId, motoristaId, telefoneMotorista, carroId, odometroAtual], (err, result) => {
-        if (err) {
-            console.error("❌ Erro ao registrar solicitação:", err);
-            return res.status(500).json({ error: "Erro ao registrar solicitação" });
-        }
-        console.log("✅ Evento salvo no banco!", result);
-        res.json({ message: "Veículo solicitado com sucesso!", id: result.insertId });
-    });
-});
-
-
+// 🔥 Exportação correta das funções
 module.exports = {
-    listarEventos, 
+    listarEventos,
     solicitarVeiculo,
     devolverVeiculo,
     verificarDisponibilidade,
