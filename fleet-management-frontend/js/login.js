@@ -16,8 +16,8 @@ document.getElementById("loginForm").addEventListener("submit", async (event) =>
         const data = await response.json();
 
         if (response.ok) {
-            localStorage.setItem("token", data.token); // 🔥 Guarda o token de autenticação
-            window.location.href = "index.html"; // 🔥 Redireciona para a tela principal
+            localStorage.setItem("token", data.token); // Guarda o token de autenticação
+            window.location.href = "index.html"; // Redireciona para a tela principal
         } else {
             mensagemDiv.textContent = "❌ E-mail ou senha incorretos!";
             mensagemDiv.style.display = "block";

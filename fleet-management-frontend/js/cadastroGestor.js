@@ -20,7 +20,7 @@ document.getElementById("cadastroForm").addEventListener("submit", async (event)
             mensagemDiv.textContent = "✅ Cadastro realizado com sucesso!";
             mensagemDiv.style.color = "green";
             setTimeout(() => {
-                window.location.href = "login.html"; // 🔥 Redireciona para login após cadastro
+                window.location.href = "login.html"; // Redireciona para login após cadastro
             }, 2000);
         } else {
             mensagemDiv.textContent = "❌ Erro ao cadastrar! Tente novamente.";

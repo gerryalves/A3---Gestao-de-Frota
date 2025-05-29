@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // 🔥 Função para alternar entre as seções
+    // Função para alternar entre as seções
     function navigateToSection(sectionId) {
         const sections = document.querySelectorAll("main section");
         sections.forEach(section => section.style.display = "none");
@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // 🔥 Gerenciar eventos de clique no menu de navegação
+    // Gerenciar eventos de clique no menu de navegação
     const navLinks = document.querySelectorAll("nav a");
     navLinks.forEach(link => {
         link.addEventListener("click", function (e) {
@@ -20,10 +20,10 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // 🔥 Definir a seção inicial visível (por padrão, "Solicitar Veículo")
+    //  Definir a seção inicial visível (por padrão, "Solicitar Veículo")
     navigateToSection("#solicitar");
 
-    // 🔥 Alternar botão de Login para Logout
+    // Alternar botão de Login para Logout
     const logoutBtn = document.getElementById("logoutBtn");
     if (logoutBtn) {
         logoutBtn.innerText = "Logout";
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // 🔥 Gerenciar botões de navegação para "Motoristas", "Carros" e "Eventos"
+    // Gerenciar botões de navegação para "Motoristas", "Carros" e "Eventos"
     const gerenciarMotoristasBtn = document.getElementById("gerenciarMotoristasBtn");
     const gerenciarCarrosBtn = document.getElementById("gerenciarCarrosBtn");
     const gerenciarEventosBtn = document.getElementById("gerenciarEventosBtn");

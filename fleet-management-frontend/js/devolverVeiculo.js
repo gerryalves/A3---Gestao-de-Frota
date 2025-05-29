@@ -1,5 +1,5 @@
 document.getElementById("devolverForm").addEventListener("submit", async (event) => {
-    event.preventDefault(); // 🔥 Evita o recarregamento da página
+    event.preventDefault(); // Evita o recarregamento da página
 
     const gestorId = document.getElementById("gestorIdDev").value;
     const motoristaId = document.getElementById("motoristaIdDev").value;

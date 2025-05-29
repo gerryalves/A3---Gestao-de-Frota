@@ -34,7 +34,7 @@ document.getElementById("solicitarForm").addEventListener("submit", async (event
             mensagemDiv.style.color = "red";
         }
 
-        mensagemDiv.style.display = "block"; // Exibe a mensagem na tela
+        mensagemDiv.style.display = "block"; 
     } catch (error) {
         console.error("Erro ao enviar solicitação:", error);
         mensagemDiv.textContent = "❌ Erro ao conectar com o servidor!";

@@ -1,5 +1,5 @@
 document.getElementById("relatorioVeiculosForm").addEventListener("submit", async (event) => {
-    event.preventDefault(); // 🔥 Evita o recarregamento da página
+    event.preventDefault(); // Evita o recarregamento da página
 
     const dataInicio = document.getElementById("dataInicio").value;
     const dataFim = document.getElementById("dataFim").value;
@@ -19,7 +19,7 @@ document.getElementById("relatorioVeiculosForm").addEventListener("submit", asyn
         mensagemDiv.style.color = "green";
 
         const tabela = document.getElementById("relatorioVeiculos").getElementsByTagName("tbody")[0];
-        tabela.innerHTML = ""; // 🔥 Limpa a tabela antes de preencher os novos dados
+        tabela.innerHTML = ""; // Limpa a tabela antes de preencher os novos dados
 
         data.forEach(evento => {
             const row = tabela.insertRow();
@@ -56,7 +56,7 @@ document.getElementById("relatorioMotoristaForm").addEventListener("submit", asy
         mensagemDiv.style.color = "green";
 
         const tabela = document.getElementById("relatorioMotorista").getElementsByTagName("tbody")[0];
-        tabela.innerHTML = ""; // 🔥 Limpa a tabela antes de preencher os novos dados
+        tabela.innerHTML = ""; // Limpa a tabela antes de preencher os novos dados
 
         data.forEach(evento => {
             const row = tabela.insertRow();

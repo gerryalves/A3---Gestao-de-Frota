@@ -27,7 +27,7 @@ const cadastrar = async (req, res) => {
     }
 };
 
-// 🔥 Adicione a função de login
+
 const login = (req, res) => {
     const { email, senha } = req.body;
 
@@ -42,7 +42,7 @@ const login = (req, res) => {
             return res.status(401).json({ error: "❌ Gestor não encontrado!" });
         }
 
-        // 🔥 Verificando se a senha enviada pelo usuário é igual à do banco
+        // Verificando se a senha enviada pelo usuário é igual à do banco
         if (senha !== result[0].senha) {
             return res.status(401).json({ error: "❌ Senha incorreta!" });
         }
@@ -51,7 +51,6 @@ const login = (req, res) => {
     });
 };
 
-// 🔥 Agora a exportação está correta!
 module.exports = {
     cadastrar,
     login

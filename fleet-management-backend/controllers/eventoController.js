@@ -108,7 +108,6 @@ const relatorioMotorista = (req, res) => {
     });
 };
 
-// 🔥 Exportação correta das funções
 module.exports = {
     listarEventos,
     solicitarVeiculo,
