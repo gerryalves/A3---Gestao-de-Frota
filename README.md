@@ -7,3 +7,4 @@ Atualização de melhorias para clean code, removido o que for desnecéssário e
 Aba de relatórios funcionando, bugs corrigidos!
 Adicionado tela de login e correção de bugs!
 Melhorias na organização dos códigos do backend e do frontend.
+Adicionado as telas de Gerenciar Motoristas, Gerenciar Carros e Gerenciar Eventos, correções e melhorias feitas.
