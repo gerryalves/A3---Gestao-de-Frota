@@ -6,3 +6,4 @@ Atualização lógica de codigo de botao Devolver Veiculo funcionando no fronten
 Atualização de melhorias para clean code, removido o que for desnecéssário e correção de bugs.
 Aba de relatórios funcionando, bugs corrigidos!
 Adicionado tela de login e correção de bugs!
+Melhorias na organização dos códigos do backend e do frontend.
