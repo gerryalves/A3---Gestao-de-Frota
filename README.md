@@ -8,3 +8,4 @@ Aba de relatórios funcionando, bugs corrigidos!
 Adicionado tela de login e correção de bugs!
 Melhorias na organização dos códigos do backend e do frontend.
 Adicionado as telas de Gerenciar Motoristas, Gerenciar Carros e Gerenciar Eventos, correções e melhorias feitas.
+Correções e melhorias no frontend: Separação visual mais clara da tabela de Gerenciar Carros,  Colunas organizadas e com tamanho proporcional, Melhoria na alternância de cores das linhas para melhor leitura, Botões de edição e exclusão estilizados. A tabela agora carrega corretamente ao iniciar a página.  Ao adicionar um carro, os dados são atualizados automaticamente sem recarregar, Os campos do formulário são limpos após um novo carro ser adicionado,  Correção do e.preventDefault() para evitar recarregamento indesejado! o Mesmo feito para a tela de Gerenciar Motoristas.
