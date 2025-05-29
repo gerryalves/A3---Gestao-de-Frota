@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Motoristas</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Gerenciar Motoristas</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Voltar</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Lista de Motoristas</h2>
+        <table id="motoristasTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Telefone</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Motoristas serão inseridos dinamicamente via JavaScript -->
+            </tbody>
+        </table>
+
+        <h2>Adicionar Motorista</h2>
+        <form id="addMotoristaForm">
+            <input type="text" id="nomeMotorista" placeholder="Nome" required>
+            <input type="text" id="telefoneMotorista" placeholder="Telefone" required>
+            <button type="submit">Adicionar</button>
+        </form>
+    </main>
+
+    <script src="./js/motoristas.js"></script>
+</body>
+</html>

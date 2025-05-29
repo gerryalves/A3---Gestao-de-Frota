@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Função para alternar entre as seções
+    // Função para alternar entre as seções dentro da página principal
     function navigateToSection(sectionId) {
         const sections = document.querySelectorAll("main section");
         sections.forEach(section => section.style.display = "none");
@@ -10,8 +10,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Gerenciar eventos de clique no menu de navegação
-    const navLinks = document.querySelectorAll("nav a");
+    // Gerenciar eventos de clique no menu de navegação dentro da página principal
+    const navLinks = document.querySelectorAll("nav a[href^='#']");
     navLinks.forEach(link => {
         link.addEventListener("click", function (e) {
             e.preventDefault();
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    //  Definir a seção inicial visível (por padrão, "Solicitar Veículo")
+    // Definir a seção inicial visível (por padrão, "Solicitar Veículo")
     navigateToSection("#solicitar");
 
     // Alternar botão de Login para Logout
@@ -33,20 +33,26 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Gerenciar botões de navegação para "Motoristas", "Carros" e "Eventos"
+    // Redirecionar para as páginas de Gerenciamento ao clicar nos botões
     const gerenciarMotoristasBtn = document.getElementById("gerenciarMotoristasBtn");
     const gerenciarCarrosBtn = document.getElementById("gerenciarCarrosBtn");
     const gerenciarEventosBtn = document.getElementById("gerenciarEventosBtn");
 
     if (gerenciarMotoristasBtn) {
-        gerenciarMotoristasBtn.addEventListener("click", () => window.location.href = "motoristas.html");
+        gerenciarMotoristasBtn.addEventListener("click", () => {
+            window.location.href = "motoristas.html";
+        });
     }
 
     if (gerenciarCarrosBtn) {
-        gerenciarCarrosBtn.addEventListener("click", () => window.location.href = "carros.html");
+        gerenciarCarrosBtn.addEventListener("click", () => {
+            window.location.href = "carros.html";
+        });
     }
 
     if (gerenciarEventosBtn) {
-        gerenciarEventosBtn.addEventListener("click", () => window.location.href = "eventos.html");
+        gerenciarEventosBtn.addEventListener("click", () => {
+            window.location.href = "eventos.html";
+        });
     }
 });
