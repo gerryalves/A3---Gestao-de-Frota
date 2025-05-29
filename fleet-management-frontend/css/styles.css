@@ -1,3 +1,4 @@
+/* Estilos gerais */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -5,19 +6,23 @@ body {
     background-color: #f8f9fa;
 }
 
+/* 🔥 Cabeçalho */
 header {
     background-color: #343a40;
     color: #fff;
     padding: 1rem;
+    text-align: center;
 }
 
 header h1 {
     margin: 0;
 }
 
+/* Navegação */
 nav ul {
     list-style: none;
     padding: 0;
+    text-align: center;
 }
 
 nav li {
@@ -28,33 +33,122 @@ nav li {
 nav a {
     color: #fff;
     text-decoration: none;
+    font-weight: bold;
 }
 
+/* Área principal */
 main {
     padding: 1rem;
+    max-width: 90%;
+    margin: auto;
 }
 
+/* Estilização dos formulários */
 form {
     display: flex;
     flex-direction: column;
+    gap: 10px;
 }
 
 form input {
-    margin-bottom: 1rem;
-    padding: 0.5rem;
+    padding: 10px;
     border: 1px solid #ced4da;
-    border-radius: 0.25rem;
+    border-radius: 5px;
+    font-size: 16px;
 }
 
 form button {
-    padding: 0.5rem;
+    padding: 10px;
     background-color: #007bff;
     color: #fff;
     border: none;
-    border-radius: 0.25rem;
+    border-radius: 5px;
     cursor: pointer;
+    font-size: 16px;
 }
 
 form button:hover {
     background-color: #0056b3;
+}
+
+/* Melhorias na tabela */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid #ccc;
+    margin-top: 20px;
+    background-color: #fff;
+}
+
+th, td {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+td {
+    font-size: 16px;
+}
+
+/* Alternância de cores para melhor leitura */
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Melhor alinhamento da tabela de carros */
+th:first-child, td:first-child {
+    text-align: center;
+    width: 10%;
+}
+
+th:nth-child(2), td:nth-child(2) {
+    width: 40%;
+}
+
+th:nth-child(3), td:nth-child(3) {
+    width: 30%;
+}
+
+th:nth-child(4), td:nth-child(4) {
+    text-align: center;
+    width: 10%;
+}
+
+th:nth-child(5), td:nth-child(5) {
+    text-align: center;
+    width: 10%;
+}
+
+/* Estilos para botões de ações na tabela */
+.editarBtn, .excluirBtn {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.editarBtn {
+    background-color: #ffc107;
+    color: #fff;
+}
+
+.editarBtn:hover {
+    background-color: #e0a800;
+}
+
+.excluirBtn {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.excluirBtn:hover {
+    background-color: #c82333;
 }

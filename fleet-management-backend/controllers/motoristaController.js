@@ -3,16 +3,22 @@ const connection = require('../config/database');
 // Criar um novo motorista (POST)
 exports.create = (req, res) => {
     const { nome, telefone } = req.body;
-    const query = `INSERT INTO motoristas (nome, telefone) VALUES ('${nome}', '${telefone}')`;
 
-    connection.query(query, (err, result) => {
+    if (!nome || !telefone) {
+        return res.status(400).json({ error: "❌ Todos os campos são obrigatórios!" });
+    }
+
+    const query = "INSERT INTO motoristas (nome, telefone) VALUES (?, ?)";
+    
+    connection.query(query, [nome, telefone], (err, result) => {
         if (err) {
-            res.status(500).send('Erro ao cadastrar motorista');
-            throw err;
+            console.error("❌ Erro ao adicionar motorista:", err);
+            return res.status(500).json({ error: "Erro ao adicionar motorista" }); // 🔥 Retorna erro em JSON!
         }
-        res.send('Motorista cadastrado com sucesso!');
+        res.json({ message: "✅ Motorista adicionado com sucesso!", id: result.insertId });
     });
 };
+
 
 // Listar todos os motoristas (GET)
 exports.list = (req, res) => {
