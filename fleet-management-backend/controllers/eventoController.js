@@ -15,42 +15,59 @@ const listarEventos = (req, res) => {
 
 // Solicitar um veículo (POST)
 const solicitarVeiculo = (req, res) => {
-    const { gestorId, motoristaId, telefoneMotorista, carroId, odometroAtual } = req.body;
+    const { gestorId, motoristaId, telefoneMotorista, carroPlaca, odometroAtual } = req.body;
 
-    console.log("🔍 Dados recebidos:", { gestorId, motoristaId, telefoneMotorista, carroId, odometroAtual });
-
-    if (!gestorId || !motoristaId || !telefoneMotorista || !carroId || !odometroAtual) {
-        return res.status(400).json({ error: "❌ Erro ao solicitar veículo. Verifique os dados!" });
+    if (!gestorId || !motoristaId || !telefoneMotorista || !carroPlaca || !odometroAtual) {
+        return res.status(400).json({ error: "❌ Todos os campos são obrigatórios!" });
     }
 
-    const query = `INSERT INTO eventos (gestorId, motoristaId, telefoneMotorista, carroId, odometroAtual, tipoEvento, data) VALUES (?, ?, ?, ?, ?, 'saida', NOW())`;
-
-    connection.query(query, [gestorId, motoristaId, telefoneMotorista, carroId, odometroAtual], (err, result) => {
-        if (err) {
-            console.error("❌ Erro ao registrar solicitação:", err);
-            return res.status(500).json({ error: "Erro ao registrar solicitação" });
+    const queryBuscarCarro = "SELECT id FROM carros WHERE placa = ?";
+    
+    connection.query(queryBuscarCarro, [carroPlaca], (err, resultado) => {
+        if (err || resultado.length === 0) {
+            return res.status(500).json({ error: "❌ Erro ao encontrar veículo pela placa!" });
         }
-        console.log("✅ Evento salvo com sucesso no banco!", result);
-        res.json({ message: "Veículo solicitado com sucesso!", id: result.insertId });
+
+        const carroId = resultado[0].id;
+
+        const queryInserirEvento = "INSERT INTO eventos (gestorId, motoristaId, telefoneMotorista, carroId, odometroAtual, tipoEvento) VALUES (?, ?, ?, ?, ?, 'Solicitação')";
+        
+        connection.query(queryInserirEvento, [gestorId, motoristaId, telefoneMotorista, carroId, odometroAtual], (errInsercao, resultadoEvento) => {
+            if (errInsercao) {
+                return res.status(500).json({ error: "❌ Erro ao registrar evento!" });
+            }
+            res.json({ message: "✅ Veículo solicitado com sucesso!", idEvento: resultadoEvento.insertId });
+        });
     });
 };
 
 // Devolver um veículo (POST)
 const devolverVeiculo = (req, res) => {
-    const { gestorId, motoristaId, telefoneMotorista, carroId, odometroAtual } = req.body;
-    
-    if (!gestorId || !motoristaId || !telefoneMotorista || !carroId || !odometroAtual) {
+    const { gestorIdDev, motoristaIdDev, telefoneMotoristaDev, carroPlacaDev, odometroAtualDev } = req.body;
+
+    if (!gestorIdDev || !motoristaIdDev || !telefoneMotoristaDev || !carroPlacaDev || !odometroAtualDev) {
         return res.status(400).json({ error: "❌ Todos os campos são obrigatórios!" });
     }
 
-    const query = `INSERT INTO eventos (gestorId, motoristaId, telefoneMotorista, carroId, odometroAtual, tipoEvento, data) VALUES (?, ?, ?, ?, ?, 'entrada', NOW())`;
-
-    connection.query(query, [gestorId, motoristaId, telefoneMotorista, carroId, odometroAtual], (err, result) => {
-        if (err) {
-            console.error("❌ Erro ao registrar devolução:", err);
-            return res.status(500).json({ error: "Erro ao registrar devolução" });
+    //  Buscar o ID do carro baseado na PLACA
+    const queryBuscarCarro = "SELECT id FROM carros WHERE placa = ?";
+    
+    connection.query(queryBuscarCarro, [carroPlacaDev], (err, resultado) => {
+        if (err || resultado.length === 0) {
+            return res.status(500).json({ error: "❌ Erro ao encontrar veículo pela placa!" });
         }
-        res.json({ message: "✅ Veículo devolvido com sucesso!", id: result.insertId });
+
+        const carroId = resultado[0].id;
+
+        //  Registrar evento de devolução
+        const queryInserirEvento = "INSERT INTO eventos (gestorId, motoristaId, telefoneMotorista, carroId, odometroAtual, tipoEvento) VALUES (?, ?, ?, ?, ?, 'Devolução')";
+        
+        connection.query(queryInserirEvento, [gestorIdDev, motoristaIdDev, telefoneMotoristaDev, carroId, odometroAtualDev], (errInsercao, resultadoEvento) => {
+            if (errInsercao) {
+                return res.status(500).json({ error: "❌ Erro ao registrar evento de devolução!" });
+            }
+            res.json({ message: "✅ Veículo devolvido com sucesso!", idEvento: resultadoEvento.insertId });
+        });
     });
 };
 
@@ -78,7 +95,7 @@ const relatorioUsoVeiculos = (req, res) => {
         return res.status(400).json({ error: "❌ Informe a data de início e fim do período!" });
     }
 
-    const query = `SELECT * FROM eventos WHERE tipoEvento = 'saida' AND data BETWEEN ? AND ?`;
+    const query = `SELECT * FROM eventos WHERE tipoEvento IN ('saida', 'entrada', 'Solicitação', 'Devolução') AND data BETWEEN ? AND ?`;
 
     connection.query(query, [dataInicio, dataFim], (err, result) => {
         if (err) {

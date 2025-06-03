@@ -1,15 +1,39 @@
+document.addEventListener("DOMContentLoaded", () => {
+    // 🔥 Carregar lista de carros com placa e modelo
+    fetch("http://localhost:3000/api/carros")
+        .then(response => response.json())
+        .then(data => {
+            const selectCarroDev = document.getElementById("carroPlacaDev");
+            selectCarroDev.innerHTML = data.map(carro => `
+                <option value="${carro.placa}">${carro.placa} - ${carro.modelo}</option>
+            `).join("");
+        })
+        .catch(error => console.error("❌ Erro ao carregar veículos:", error));
+
+    // 🔥 Carregar lista de motoristas com nome e telefone
+    fetch("http://localhost:3000/api/motoristas")
+        .then(response => response.json())
+        .then(data => {
+            const selectMotoristaDev = document.getElementById("motoristaIdDev");
+            selectMotoristaDev.innerHTML = data.map(motorista => `
+                <option value="${motorista.id}">${motorista.nome} - 📞 ${motorista.telefone}</option>
+            `).join("");
+        })
+        .catch(error => console.error("❌ Erro ao carregar motoristas:", error));
+});
+
 document.getElementById("devolverForm").addEventListener("submit", async (event) => {
-    event.preventDefault(); // Evita o recarregamento da página
+    event.preventDefault(); // 🔥 Evita recarregamento da página
 
-    const gestorId = document.getElementById("gestorIdDev").value;
-    const motoristaId = document.getElementById("motoristaIdDev").value;
-    const telefoneMotorista = document.getElementById("telefoneMotoristaDev").value;
-    const carroId = document.getElementById("carroIdDev").value;
-    const odometroAtual = document.getElementById("odometroAtualDev").value;
+    const gestorIdDev = document.getElementById("gestorIdDev").value;
+    const motoristaIdDev = document.getElementById("motoristaIdDev").value;
+    const telefoneMotoristaDev = document.getElementById("telefoneMotoristaDev").value;
+    const carroPlacaDev = document.getElementById("carroPlacaDev").value; // 🔥 Agora usa PLACA!
+    const odometroAtualDev = document.getElementById("odometroAtualDev").value;
 
-    const data = { gestorId, motoristaId, telefoneMotorista, carroId, odometroAtual };
+    const data = { gestorIdDev, motoristaIdDev, telefoneMotoristaDev, carroPlacaDev, odometroAtualDev };
 
-    const mensagemDiv = document.getElementById("mensagemConfirmacaoDev"); 
+    const mensagemDiv = document.getElementById("mensagemConfirmacaoDev");
 
     try {
         const response = await fetch("http://localhost:3000/api/eventos/devolver", {
@@ -18,19 +42,21 @@ document.getElementById("devolverForm").addEventListener("submit", async (event)
             body: JSON.stringify(data)
         });
 
+        const resultado = await response.json();
+
         if (response.ok) {
-            mensagemDiv.textContent = "✅ Veículo devolvido com sucesso!";
+            mensagemDiv.textContent = `✅ Veículo ${carroPlacaDev} devolvido com sucesso!`;
             mensagemDiv.style.color = "green";
         } else {
-            mensagemDiv.textContent = "❌ Erro ao devolver veículo. Verifique os dados!";
+            mensagemDiv.textContent = `❌ Erro: ${resultado.error || "Verifique os dados!"}`;
             mensagemDiv.style.color = "red";
         }
 
         mensagemDiv.style.display = "block"; 
     } catch (error) {
-        console.error("❌ Erro ao conectar com o servidor:", error);
+        console.error("❌ Erro ao conectar com o servidor!", error);
         mensagemDiv.textContent = "❌ Erro ao conectar com o servidor!";
         mensagemDiv.style.color = "red";
-        mensagemDiv.style.display = "block"; 
+        mensagemDiv.style.display = "block";
     }
 });

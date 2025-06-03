@@ -1,5 +1,5 @@
 document.getElementById("relatorioVeiculosForm").addEventListener("submit", async (event) => {
-    event.preventDefault(); // Evita o recarregamento da página
+    event.preventDefault(); 
 
     const dataInicio = document.getElementById("dataInicio").value;
     const dataFim = document.getElementById("dataFim").value;
@@ -8,34 +8,43 @@ document.getElementById("relatorioVeiculosForm").addEventListener("submit", asyn
 
     try {
         const response = await fetch(`http://localhost:3000/api/eventos/uso?dataInicio=${dataInicio}&dataFim=${dataFim}`);
-
-        if (!response.ok) {
-            throw new Error("❌ Erro ao buscar relatório de veículos!");
-        }
-
         const data = await response.json();
+
+        if (!response.ok || data.length === 0) {
+            throw new Error("❌ Nenhum evento encontrado para este período.");
+        }
 
         mensagemDiv.textContent = "✅ Relatório gerado com sucesso!";
         mensagemDiv.style.color = "green";
 
-        const tabela = document.getElementById("relatorioVeiculos").getElementsByTagName("tbody")[0];
+        const tabela = document.querySelector("#relatorioVeiculos tbody");
         tabela.innerHTML = ""; // Limpa a tabela antes de preencher os novos dados
 
         data.forEach(evento => {
             const row = tabela.insertRow();
-            row.innerHTML = `<td>${evento.id}</td><td>${evento.gestorId}</td><td>${evento.motoristaId}</td><td>${evento.carroId}</td><td>${evento.data}</td><td>${evento.tipoEvento}</td>`; // 🔥 Corrigido para `data`
+            row.innerHTML = `
+                <td>${evento.id}</td>
+                <td>${evento.gestorId}</td>
+                <td>${evento.motoristaId}</td>
+                <td>${evento.telefoneMotorista}</td>
+                <td>${evento.carroId}</td>
+                <td>${evento.odometroAtual}</td>
+                <td>${evento.tipoEvento}</td>
+                <td>${evento.data}</td>
+            `; 
         });
 
         mensagemDiv.style.display = "block";
     } catch (error) {
         console.error("❌ Erro ao buscar relatório:", error);
-        mensagemDiv.textContent = "❌ Erro ao conectar com o servidor!";
+        mensagemDiv.textContent = "❌ Erro ao gerar relatório ou nenhum evento encontrado!";
         mensagemDiv.style.color = "red";
         mensagemDiv.style.display = "block";
     }
 });
+
 document.getElementById("relatorioMotoristaForm").addEventListener("submit", async (event) => {
-    event.preventDefault();
+    event.preventDefault(); 
 
     const motoristaId = document.getElementById("motoristaIdRelatorio").value;
     const dataInicio = document.getElementById("dataInicioMotorista").value;
@@ -45,28 +54,35 @@ document.getElementById("relatorioMotoristaForm").addEventListener("submit", asy
 
     try {
         const response = await fetch(`http://localhost:3000/api/eventos/motorista?motoristaId=${motoristaId}&dataInicio=${dataInicio}&dataFim=${dataFim}`);
-
-        if (!response.ok) {
-            throw new Error("❌ Erro ao buscar relatório do motorista!");
-        }
-
         const data = await response.json();
+
+        if (!response.ok || data.length === 0) {
+            throw new Error("❌ Nenhum evento encontrado para este período.");
+        }
 
         mensagemDiv.textContent = "✅ Relatório gerado com sucesso!";
         mensagemDiv.style.color = "green";
 
-        const tabela = document.getElementById("relatorioMotorista").getElementsByTagName("tbody")[0];
+        const tabela = document.querySelector("#relatorioMotorista tbody");
         tabela.innerHTML = ""; // Limpa a tabela antes de preencher os novos dados
 
         data.forEach(evento => {
             const row = tabela.insertRow();
-            row.innerHTML = `<td>${evento.id}</td><td>${evento.motoristaId}</td><td>${evento.carroId}</td><td>${evento.data}</td><td>${evento.tipoEvento}</td>`; // 🔥 Corrigido para `data`
+            row.innerHTML = `
+                <td>${evento.id}</td>
+                <td>${evento.motoristaId}</td>
+                <td>${evento.telefoneMotorista}</td>
+                <td>${evento.carroId}</td>
+                <td>${evento.odometroAtual}</td>
+                <td>${evento.tipoEvento}</td>
+                <td>${evento.data}</td>
+            `; 
         });
 
         mensagemDiv.style.display = "block";
     } catch (error) {
         console.error("❌ Erro ao buscar relatório:", error);
-        mensagemDiv.textContent = "❌ Erro ao conectar com o servidor!";
+        mensagemDiv.textContent = "❌ Erro ao gerar relatório ou nenhum evento encontrado!";
         mensagemDiv.style.color = "red";
         mensagemDiv.style.display = "block";
     }
