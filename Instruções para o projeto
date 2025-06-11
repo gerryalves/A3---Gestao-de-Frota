@@ -1,0 +1,11 @@
+Abra o servidor no Terminal dentro da pasta de backend do projeto digitando node server.js ou nodemon server.js
+Abra o arquivo de login.html dentro da pasta de frontend se já tiver um gestor cadastrado, senão abrir cadastroGestor.html e cadastrar um novo gestor com Nome completo, e-mail e senha.
+Login do Gestor: Digitar E-mail e senha cadastrados.
+Após feito o login abrirá a página de Gestão de Frota de Veículos.
+Para solicitar um veículo digite um ID de Gestor, ID de Motorista, Telefone do motorista, selecionar um dos veículos disponíveis identificados por modelo e placa e o Hodômetro atual do veículo.
+Para devolver um veículo, basta repetir os dados alterando apenas o Hodômetro atual no ato de devolução.
+É possível Gerenciar os Carros disponíveis com ID, Modelo e Placa, editar ou removê-los conforme desejado ou adicionar um novo veículo.
+Também é possível Gerenciar os Motoristas disponíveis com ID, Nome, Telefone, editar os dados cadastrados, removê-los ou adicionar um novo motorista com Nome e Telefone.
+Ao Gerenciar eventos ficará registrado todas as entradas e saídas com respectivos IDs do Gestor, Motorista e Carro, constando data e hora exata da solicitação e devolução de veículos.
+Também é possível gerar um relatório de tudo isso, porém a função Gerenciar Eventos está armazenando melhor os dados.
+Após fazer Logout, retornará a tela de Login do Gestor.
