@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // 🔥 Carregar lista de carros com placa e modelo
+    //  Carregar lista de carros com placa e modelo
     fetch("http://localhost:3000/api/carros")
         .then(response => response.json())
         .then(data => {
@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .catch(error => console.error("❌ Erro ao carregar veículos:", error));
 
-    // 🔥 Carregar lista de motoristas com nome e telefone
+    //  Carregar lista de motoristas com nome e telefone
     fetch("http://localhost:3000/api/motoristas")
         .then(response => response.json())
         .then(data => {
@@ -23,12 +23,12 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.getElementById("devolverForm").addEventListener("submit", async (event) => {
-    event.preventDefault(); // 🔥 Evita recarregamento da página
+    event.preventDefault(); //  Evita recarregamento da página
 
     const gestorIdDev = document.getElementById("gestorIdDev").value;
     const motoristaIdDev = document.getElementById("motoristaIdDev").value;
     const telefoneMotoristaDev = document.getElementById("telefoneMotoristaDev").value;
-    const carroPlacaDev = document.getElementById("carroPlacaDev").value; // 🔥 Agora usa PLACA!
+    const carroPlacaDev = document.getElementById("carroPlacaDev").value; 
     const odometroAtualDev = document.getElementById("odometroAtualDev").value;
 
     const data = { gestorIdDev, motoristaIdDev, telefoneMotoristaDev, carroPlacaDev, odometroAtualDev };

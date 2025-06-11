@@ -13,7 +13,7 @@ exports.create = (req, res) => {
     connection.query(query, [nome, telefone], (err, result) => {
         if (err) {
             console.error("❌ Erro ao adicionar motorista:", err);
-            return res.status(500).json({ error: "Erro ao adicionar motorista" }); // 🔥 Retorna erro em JSON!
+            return res.status(500).json({ error: "Erro ao adicionar motorista" }); 
         }
         res.json({ message: "✅ Motorista adicionado com sucesso!", id: result.insertId });
     });

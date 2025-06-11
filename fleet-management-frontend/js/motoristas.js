@@ -18,18 +18,18 @@ document.addEventListener("DOMContentLoaded", () => {
                     </tr>
                 `).join("");
 
-                // Adicionar evento de clique para edição
+                // Adiciona evento de clique para edição
                 document.querySelectorAll(".editarBtn").forEach(btn => {
                     btn.addEventListener("click", () => {
                         const id = btn.getAttribute("data-id");
                         const nome = btn.getAttribute("data-nome");
                         const telefone = btn.getAttribute("data-telefone");
 
-                        // Preencher os campos do formulário com os dados atuais
+                        // Preenche os campos do formulário com os dados atuais
                         document.getElementById("nomeMotorista").value = nome;
                         document.getElementById("telefoneMotorista").value = telefone;
 
-                        // Atualizar o evento de submissão do formulário para editar
+                        // Atualiza o evento de submissão do formulário para editar
                         document.getElementById("addMotoristaForm").onsubmit = (e) => {
                             e.preventDefault();
                             editarMotorista(id);
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     });
                 });
 
-                // Adicionar evento de clique para exclusão
+                // Adiciona evento de clique para exclusão
                 document.querySelectorAll(".excluirBtn").forEach(btn => {
                     btn.addEventListener("click", () => {
                         const id = btn.getAttribute("data-id");

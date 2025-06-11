@@ -19,18 +19,18 @@ document.addEventListener("DOMContentLoaded", () => {
                     </tr>
                 `).join("");
 
-                // Adicionar evento de clique para edição
+                // Adiciona evento de clique para edição
                 document.querySelectorAll(".editarBtn").forEach(btn => {
                     btn.addEventListener("click", () => {
                         const id = btn.getAttribute("data-id");
                         const modelo = btn.getAttribute("data-modelo");
                         const placa = btn.getAttribute("data-placa");
 
-                        // Preencher os campos do formulário com os dados atuais
+                        // Preenche os campos do formulário com os dados atuais
                         document.getElementById("modeloCarro").value = modelo;
                         document.getElementById("placaCarro").value = placa;
 
-                        // Atualizar o evento de submissão do formulário para editar
+                        // Atualiza o evento de submissão do formulário para editar
                         document.getElementById("addCarroForm").onsubmit = (e) => {
                             e.preventDefault();
                             editarCarro(id);
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     });
                 });
 
-                // Adicionar evento de clique para exclusão
+                // Adiciona evento de clique para exclusão
                 document.querySelectorAll(".excluirBtn").forEach(btn => {
                     btn.addEventListener("click", () => {
                         const id = btn.getAttribute("data-id");
@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(response => response.json())
         .then(data => {
             console.log("🗑️ Carro excluído com sucesso:", data);
-            atualizarTabela(); // 🔥 Atualiza a tabela automaticamente
+            atualizarTabela(); // Atualiza a tabela automaticamente
         })
         .catch(error => console.error("❌ Erro ao excluir carro:", error));
     }

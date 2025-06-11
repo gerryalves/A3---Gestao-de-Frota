@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Gerenciar eventos de clique no menu de navegação dentro da página principal
+    // Gerencia eventos de clique no menu de navegação dentro da página principal
     const navLinks = document.querySelectorAll("nav a[href^='#']");
     navLinks.forEach(link => {
         link.addEventListener("click", function (e) {
@@ -20,10 +20,10 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Definir a seção inicial visível (por padrão, "Solicitar Veículo")
+    // Define a seção inicial visível (por padrão, "Solicitar Veículo")
     navigateToSection("#solicitar");
 
-    // Alternar botão de Login para Logout
+    // Alterna botão de Login para Logout
     const logoutBtn = document.getElementById("logoutBtn");
     if (logoutBtn) {
         logoutBtn.innerText = "Logout";
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Redirecionar para as páginas de Gerenciamento ao clicar nos botões
+    // Redireciona para as páginas de Gerenciamento ao clicar nos botões
     const gerenciarMotoristasBtn = document.getElementById("gerenciarMotoristasBtn");
     const gerenciarCarrosBtn = document.getElementById("gerenciarCarrosBtn");
     const gerenciarEventosBtn = document.getElementById("gerenciarEventosBtn");
